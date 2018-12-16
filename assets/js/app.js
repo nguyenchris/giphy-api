@@ -23,6 +23,10 @@ const gifController = (function () {
         }
       })
       return topic2;
+    },
+
+    updateTopics: function (el) {
+      topics.push(el);
     }
   };
 
@@ -37,7 +41,10 @@ const uiController = (function () {
   const cacheDom = {
     $categories: $('.categories'),
     $gifContent: $('.gif-content'),
-    $gifButton: $('.gif-button')
+    $gifButton: $('.gif-button'),
+    $xButton: $('.x-button'),
+    $form: $('form'),
+    $search: $('#search')
   }
 
 
@@ -47,7 +54,10 @@ const uiController = (function () {
     },
 
     genButtons: function (arr, arrNoSpace) {
-      let html = `<li class='gif-button' data-type='%type%'><a class=waves-effect'>%topic%</a></li>`
+
+      cacheDom.$gifContent.empty();
+
+      let html = `<li class='gif-button' data-type='%type%'><a class='waves-effect'>%topic%</a></li>`
       let newButtons = '';
       let newHtml;
 
@@ -68,21 +78,20 @@ const uiController = (function () {
 const appController = (function (uiCtrl, gifCtrl) {
 
   var dom = uiCtrl.getDom();
+  var topicsArr = gifCtrl.getTopics()
 
   const setupEventListeners = function () {
     $(document).on('click', '.gif-button', function () {
 
       dom.$gifContent.empty();
 
-      dom.$gifButton.addClass("active");
-      dom.$gifButton.remove();
-      // $(this).addClass("active");
+      // dom.$gifButton.addClass("active");
+      $('.gif-button').removeClass('active')
+      $(this).addClass("active");
 
       let type = $(this).attr("data-type");
 
-      var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=iQnMlnNxPVU7zfdNmAh9iJv9JrOGncnS&limit=10"
-
-      console.log(queryUrl);
+      let queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=iQnMlnNxPVU7zfdNmAh9iJv9JrOGncnS&limit=10"
 
 
       $.ajax({
@@ -92,7 +101,7 @@ const appController = (function (uiCtrl, gifCtrl) {
         let results = response.data;
 
         for (i = 0; i < results.length; i++) {
-          let newDiv = $("<div class='gif-item'>");
+          let newDiv = $("<div class='gif-item z-depth-2'>");
 
           let rating = results[i].rating;
 
@@ -117,7 +126,42 @@ const appController = (function (uiCtrl, gifCtrl) {
       })
 
     })
+
+
+
+    $(document).on("click", ".gif-image", function () {
+
+      let state = $(this).attr("data-state");
+
+      if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
+    });
   }
+
+  $(document).on('click', '.x-button', function () {
+    dom.$search.val('');
+  })
+
+  $('.submit-btn, .add-button').on('click', function (event) {
+
+    event.preventDefault();
+    let value = dom.$search.val().trim()
+
+    if (value.length >= 1) {
+      dom.$search.val('')
+      gifCtrl.updateTopics(value);
+
+      uiCtrl.genButtons(gifCtrl.getTopics(), gifCtrl.getTopicsNoSpace())
+    }
+
+  })
+
+
 
 
 

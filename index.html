@@ -20,23 +20,24 @@
     </ul>
     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
   </nav> -->
-
-  <nav class="#455a64 blue-grey darken-2">
-    <div class="nav-wrapper">
-      <form>
+  <form id="form">
+    <nav class="#455a64 blue-grey darken-2">
+      <div class="nav-wrapper">
         <div class="input-field #b0bec5 blue-grey lighten-3">
-          <input id="search" type="search" placeholder="Add a New Category" required>
-          <label class="label-icon" for="search"><i class="material-icons">add</i></label>
-          <i class="material-icons">close</i>
+          <input id="search" type="search" placeholder="Add a New Category" name='query' required>
+          <label class="label-icon" for="search"><i class="material-icons add-button">add</i></label>
+          <i class="material-icons x-button" value="Reset form">close</i>
         </div>
-      </form>
-    </div>
-  </nav>
+      </div>
+    </nav>
+    <button class="btn waves-effect waves-light submit-btn #607d8b blue-grey" type="submit" name="action">Submit</button>
+  </form>
+
 
   <ul id="slide-out" class="sidenav sidenav-fixed categories">
     <li>
       <div class="user-view">
-        <div class="background #455a64 blue-grey darken-2">
+        <div class="background #607d8b blue-grey">
         </div>
         <h4 class='side-title'>CATEGORIES</h4>
       </div>
@@ -44,12 +45,13 @@
   </ul>
   <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-
-
   <main>
     <div class="container">
 
+
+
       <div class="gif-content">
+
 
       </div>
   </main>
