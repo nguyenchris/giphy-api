@@ -1,0 +1,44 @@
+html {
+  box-sizing: border-box;
+  list-style-type: none;
+
+}
+
+.loading-div {
+  display: none;
+}
+
+nav,
+main {
+  padding-left: 250px;
+}
+
+
+.sidenav {
+  width: 250px;
+}
+
+
+.side-title {
+  padding-bottom: 50px;
+  text-align: center;
+  font-size: 30px;
+  color: white;
+}
+
+.gif-content {
+  display: inline-block;
+}
+
+.gif-item {
+    float: left;
+    padding: 10px;
+}
+
+.rating {
+  text-align: center;
+}
+
+.active {
+  background-color: #b0bec5;
+}
