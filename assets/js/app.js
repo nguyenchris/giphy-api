@@ -93,7 +93,7 @@ const appController = (function (uiCtrl, gifCtrl) {
 
       let queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=iQnMlnNxPVU7zfdNmAh9iJv9JrOGncnS&limit=10";
 
-
+      // AJAX request to get giphy images and rating
       $.ajax({
         url: queryUrl,
         method: 'GET'
@@ -126,7 +126,7 @@ const appController = (function (uiCtrl, gifCtrl) {
     });
 
 
-    // Click event Listener for clicking a gif to animate
+    // Click event Listener for clicking a gif in order to animate
     $(document).on("click", ".gif-image", function () {
 
       let state = $(this).attr("data-state");
@@ -147,7 +147,7 @@ const appController = (function (uiCtrl, gifCtrl) {
     });
 
 
-    // event listener for submit and plus button
+    // Click event listener for submit and plus button
     $('.submit-btn, .add-button').on('click', function (event) {
 
       event.preventDefault();
@@ -171,4 +171,5 @@ const appController = (function (uiCtrl, gifCtrl) {
 
 })(uiController, gifController);
 
+// Initialize APP
 appController.init();
