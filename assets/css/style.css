@@ -33,7 +33,7 @@ main {
 .gif-item {
     float: left;
     padding: 10px;
-    margin: 10px;
+    margin: 8px;
 }
 
 .gif-image {
@@ -60,4 +60,8 @@ main {
 
 .add-button {
   cursor: pointer;
+}
+
+p {
+  text-transform: uppercase;
 }
